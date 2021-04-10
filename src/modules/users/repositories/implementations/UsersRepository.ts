@@ -29,8 +29,9 @@ export class UsersRepository implements IUsersRepository {
     first_name,
     last_name,
   }: IFindUserByFullNameDTO): Promise<User[] | undefined> {
-    return this.repository.query('SELECT * FROM users WHERE LOWER (first_name) = LOWER($1) AND (last_name) = LOWER($2)',
-    [first_name, last_name]
+    return this.repository.query(
+      'SELECT * FROM users WHERE LOWER(first_name) = LOWER($1) AND LOWER(last_name) = LOWER($2)',
+      [first_name, last_name],
     );
   }
 }
